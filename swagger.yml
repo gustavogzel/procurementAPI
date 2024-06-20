@@ -1,0 +1,208 @@
+# swagger.yml
+openapi: 3.0.0
+
+info:
+  title: "REST API"
+  description: "API about contracts for Procurement Dashboard"
+  version: "1.0.0"
+
+servers:
+  - url: "/api"
+
+components:
+  schemas:
+    Person:
+      type: "object"
+      required:
+        - lname
+      properties:
+        fname:
+          type: "string"
+        lname:
+          type: "string"
+    Login:
+      type: "object"
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: "string"
+        password:
+          type: "string"          
+  securitySchemes:
+    ApiKeyAuth:        # arbitrary name for the security scheme
+      type: apiKey
+      in: header       # can be "header", "query" or "cookie"
+      name: token     # name of the header, query parameter or cookie      
+      x-apikeyInfoFunc: users.check_ApiKeyAuth
+        
+  parameters:
+    sortActive:
+      name: "sortActive"
+      description: "sortActive"
+      in: path
+      required: True
+      schema:
+        type: "string"  
+    sortDirection:
+      name: "sortDirection"
+      description: "sortDirection"
+      in: path
+      required: True
+      schema:
+        type: "string"          
+    pageIndex:
+      name: "pageIndex"
+      description: "pageIndex"
+      in: path
+      required: true
+      schema:
+        type: "integer"        
+    pageSize:
+      name: "pageSize"
+      description: "pageSize"
+      in: path
+      required: true
+      schema:
+        type: "integer"                
+    iduser:
+      name: "iduser"
+      description: "ID of the user"
+      in: path
+      required: true
+      schema:
+        type: "integer"   
+    username:
+      name: "username"
+      description: "username"
+      in: path
+      required: True
+      schema:
+        type: "string"          
+    password:
+      name: "password"
+      description: "password"
+      in: path
+      required: True
+      schema:
+        type: "string"          
+
+
+paths:
+  /engamentcountbytemplate:
+    get:
+      operationId: "engagement.count_template"
+      tags:
+        - "Engagement"
+      summary: "Read the list of engagement"
+      #security:
+      #  - ApiKeyAuth: []     
+      responses:
+        "200":
+          description: "Successfully read list"
+  /amountbytemplate:
+    get:
+      operationId: "engagement.amount_template"
+      tags:
+        - "Engagement"
+      summary: "Read the list of engagement"
+      #security:
+      #  - ApiKeyAuth: []     
+      responses:
+        "200":
+          description: "Successfully read list"          
+  /amountbyoffice:
+    get:
+      operationId: "engagement.amount_office"
+      tags:
+        - "Engagement"
+      summary: "Read the list of engagement"
+      #security:
+      #  - ApiKeyAuth: []     
+      responses:
+        "200":
+          description: "Successfully read list"            
+  /amountbyyear:
+    get:
+      operationId: "engagement.amount_year"
+      tags:
+        - "Engagement"
+      summary: "Read the list of engagement"
+      #security:
+      #  - ApiKeyAuth: []     
+      responses:
+        "200":
+          description: "Successfully read list"                      
+  /contractbyyear:
+    get:
+      operationId: "engagement.contract_year"
+      tags:
+        - "Engagement"
+      summary: "Read the list of engagement"
+      #security:
+      #  - ApiKeyAuth: []     
+      responses:
+        "200":
+          description: "Successfully read list"                                
+  /officebyyear:
+    get:
+      operationId: "engagement.office_year"
+      tags:
+        - "Engagement"
+      summary: "Read the list of engagement"
+      #security:
+      #  - ApiKeyAuth: []     
+      responses:
+        "200":
+          description: "Successfully read list"                                          
+  /providerbyyear:
+    get:
+      operationId: "engagement.provider_year"
+      tags:
+        - "Engagement"
+      summary: "Read the list of engagement"
+      #security:
+      #  - ApiKeyAuth: []     
+      responses:
+        "200":
+          description: "Successfully read list"                                                    
+  /estatuscontractbyyear:
+    get:
+      operationId: "engagement.estatuscontract_year"
+      tags:
+        - "Engagement"
+      summary: "Read the list of engagement"
+      #security:
+      #  - ApiKeyAuth: []     
+      responses:
+        "200":
+          description: "Successfully read list"                                                              
+  /topcontracts:
+    post:
+      operationId: "engagement.top_contracts"
+      tags:
+        - "Engagement"
+      summary: "Read the list of engagement"
+      #security:
+      #  - ApiKeyAuth: []     
+      requestBody:
+          description: "pagination"
+          required: True
+          content:
+            application/json:
+              schema:
+                x-body-name: "pagination"
+                type: "object"
+                properties:
+                  pageIndex:
+                    type: "integer"
+                  pageSize:
+                    type: "integer"
+                  sortActive:
+                    type: "string"
+                  sortDirection:
+                    type: "string"
+      responses:
+        "200":
+          description: "Successfully read list"                                                                        

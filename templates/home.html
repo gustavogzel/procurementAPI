@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask REST API</title>
+</head>
+<body>
+    <h1>
+        Hello, People!
+    </h1>    
+    {% for engagement in engagements %}
+    <h2>{{ engagement.id_contract }} {{ engagement.amount_contract }} {{ engagement.template_contract}}</h2>
+    {% endfor %}
+
+
+</body>
+</html>
